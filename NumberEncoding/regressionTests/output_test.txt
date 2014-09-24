@@ -3,9 +3,9 @@
 4824: Torf
 4824: Tor 4
 4824: fort
+10/783--5: je bo"s 5
 04824: 0 fort
 04824: 0 Tor 4
 04824: 0 Torf
-10/783--5: je bo"s 5
 10/783--5: neu o"d 5
 10/783--5: je Bo" da
