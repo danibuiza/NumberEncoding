@@ -46,7 +46,7 @@ Dependencies
 
 - Junit should be available
 
-- Maven should be installed in your machine
+- Maven should be installed in your machine and should point to the proper JRE 8
 
 ==============
 Run
