@@ -80,15 +80,15 @@ public class NumberEncodingComparator
         return pos;
     }
 
-    public static boolean subStringMoreTwo( PhoneItem phone, DictionaryItem dictItem )
-    {
-        return dictItem != null && phone != null && phone.getCleanedPhoneNumber() != null
-            && dictItem.getDecodedWord() != null && phone.getCleanedPhoneNumber().contains( dictItem.getDecodedWord() );
-    }
-
     public static boolean completelyEquals( PhoneItem phone, DictionaryItem dictItem )
     {
         return dictItem != null && phone != null && phone.getCleanedPhoneNumber() != null
             && dictItem.getDecodedWord() != null && dictItem.getDecodedWord().equals( phone.getCleanedPhoneNumber() );
+    }
+
+    public static boolean subString( PhoneItem phone, DictionaryItem dictItem )
+    {
+        return dictItem != null && phone != null && phone.getCleanedPhoneNumber() != null
+            && dictItem.getDecodedWord() != null && phone.getCleanedPhoneNumber().contains( dictItem.getDecodedWord() );
     }
 }

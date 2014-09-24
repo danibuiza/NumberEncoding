@@ -50,23 +50,23 @@ public class NumberEncodingComparatorTest
     }
 
     @Test
-    public void testSubStringMoreTwo()
+    public void testSubString()
     {
         PhoneItem phone = null;
         DictionaryItem dictItem = null;
-        assertFalse( NumberEncodingComparator.subStringMoreTwo( phone, dictItem ) );
+        assertFalse( NumberEncodingComparator.subString( phone, dictItem ) );
 
         phone = new PhoneItem( "51403255" );
         dictItem = new DictionaryItem( "antes", true );
-        assertTrue( NumberEncodingComparator.subStringMoreTwo( phone, dictItem ) );
+        assertTrue( NumberEncodingComparator.subString( phone, dictItem ) );
 
         phone = new PhoneItem( "02514032" );
         dictItem = new DictionaryItem( "antes", true );
-        assertTrue( NumberEncodingComparator.subStringMoreTwo( phone, dictItem ) );
+        assertTrue( NumberEncodingComparator.subString( phone, dictItem ) );
 
         phone = new PhoneItem( "0251254032" );
         dictItem = new DictionaryItem( "antes", true );
-        assertFalse( NumberEncodingComparator.subStringMoreTwo( phone, dictItem ) );
+        assertFalse( NumberEncodingComparator.subString( phone, dictItem ) );
     }
 
     @Test

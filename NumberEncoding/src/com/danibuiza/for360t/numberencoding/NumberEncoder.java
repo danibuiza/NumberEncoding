@@ -96,21 +96,19 @@ public class NumberEncoder
         {
             addPotentialResult( dictItem, phone, results, conflicts );
         }
-        // one difference => substring
-        else if( NumberEncodingComparator.equalsButOne( phone, dictItem ) != NumberEncodingComparator.NOT_FOUND )
-        {
-            match1diffs( dictItem, phone, results, conflicts, filteredWords );
-        }
-        // two differences and substring
-        else if( NumberEncodingComparator.equalsButTwo( phone, dictItem ) != NumberEncodingComparator.NOT_FOUND )
-        {
-            match2diffs( dictItem, phone, results, conflicts, filteredWords );
-        }
-        // more differences, so it is necessary to recursively call this method again combining the
-        // words in the filtered list
-        else if( NumberEncodingComparator.subStringMoreTwo( phone, dictItem ) )
+        else if( NumberEncodingComparator.subString( phone, dictItem ) )
         {
             matchAllCleanCombinations( dictItem, phone, results, conflicts, filteredWords );
+            if( NumberEncodingComparator.equalsButOne( phone, dictItem ) != NumberEncodingComparator.NOT_FOUND )
+            {
+                // potential use of parts of the phone
+                match1diffs( dictItem, phone, results, conflicts, filteredWords );
+            }
+            else if( NumberEncodingComparator.equalsButTwo( phone, dictItem ) != NumberEncodingComparator.NOT_FOUND )
+            {
+                // potential use of parts of the phone
+                match2diffs( dictItem, phone, results, conflicts, filteredWords );
+            }
         }
     }
 
@@ -173,7 +171,6 @@ public class NumberEncoder
     private static void match2diffs( DictionaryItem dictItem, PhoneItem phone, Map<String, String> results,
             Map<String, String> conflicts, List<DictionaryItem> filteredWords )
     {
-        matchAllCleanCombinations( dictItem, phone, results, conflicts, filteredWords );
         DictionaryItem dictItemPrefixed = null;
         if( !dictItem.isPrefixed() )
         {
@@ -202,7 +199,6 @@ public class NumberEncoder
     private static void match1diffs( DictionaryItem dictItem, PhoneItem phone, Map<String, String> results,
             Map<String, String> conflicts, List<DictionaryItem> filteredWords )
     {
-        matchAllCleanCombinations( dictItem, phone, results, conflicts, filteredWords );
         int position = NumberEncodingComparator.equalsButOne( phone, dictItem );
 
         if( position == 0 )
