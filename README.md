@@ -25,45 +25,45 @@ Following requirements apply:
 ==============
 Implementation details
 ==============
-- Since there are several encodings for each phone number possible and only one decoding for a given word in the dictionary, I took the decission of revert the process:
+-Since there are several encodings for each phone number possible and only one decoding for a given word in the dictionary, I took the decission of revert the process:
 
-- I created a dictionary of words with its related decoded number
+-I created a dictionary of words with its related decoded number
 
-- For each phone I filtered the words which encoded number are parts of the phone, the others are irrelevant
+-For each phone I filtered the words which encoded number are parts of the phone, the others are irrelevant
 
-- For each phone I checked all the possible matches using all the filtered words available using recursion
+-For each phone I checked all the possible matches using all the filtered words available using recursion
 
-- I executed the program using a pool of Threads (using java.util.concurrent.ExecutorService), 10 seems to be a good number from the results I got
+-I executed the program using a pool of Threads (using java.util.concurrent.ExecutorService), 10 seems to be a good number from the results I got
 
-- The recursion process may be quite complicated to explain, it is better to check the code in the class com.danibuiza.for360t.numberencoding.NumberEncoder
+-The recursion process may be quite complicated to explain, it is better to check the code in the class com.danibuiza.for360t.numberencoding.NumberEncoder
 
-- In case that a piece of the phone is needed to encode it, this entry will be inserted to a list of possible conflicts that has to be processed at the end of the matching process for this phone. It is not possible to know for a given phone and dictionary item if it is a valid result or not without checking all the other potential results
+-In case that a piece of the phone is needed to encode it, this entry will be inserted to a list of possible conflicts that has to be processed at the end of the matching process for this phone. It is not possible to know for a given phone and dictionary item if it is a valid result or not without checking all the other potential results
 
 ==============
 Dependencies
 ==============
-- JRE update 8: Since I am using Lambdas, Streams and other Java 8 features, this is needed.
+-JRE update 8: Since I am using Lambdas, Streams and other Java 8 features, this is needed.
 
-- Junit should be available
+-Junit should be available
 
-- Maven should be installed in your machine and should point to the proper JRE 8
+-Maven should be installed in your machine and should point to the proper JRE 8
 
 ==============
 Run
 ==============
 -The project can be built and executed using maven:
 
-Build and compile: mvn package (in the directory where the pom.xml is located)
+- Build and compile: mvn package (in the directory where the pom.xml is located)
 
-Execute: java -cp target/numberEncoding-1.0.jar com.danibuiza.for360t.numberencoding.NumberEncodingMain
+- Execute: java -cp target/numberEncoding-1.0.jar com.danibuiza.for360t.numberencoding.NumberEncodingMain
 
-Parameters: 
+- Parameters: 
 you can pass 0, 1 (the possibility to print out the elapsed time) or 3 parameters (elapsed time and path of input files)
 
 ==============
 Tests
 ==============
 
-- Unit tests are located under the tests directory, to execute them using Junit you need to:
+-Unit tests are located under the tests directory, to execute them using Junit you need to: mvn test
 
-- Regression tests are located under regressionTests, to execute them you need to:
+- This folder contains unit and regression tests, regression tests run against the small input files and examples provided in the description of the task
