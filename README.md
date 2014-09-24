@@ -53,6 +53,10 @@ Run
 ==============
 -The project can be built and executed using maven:
 
+Build and compile: mvn package (in the directory where the pom.xml is located)
+
+Execute: java -cp target/numberEncoding-1.0.jar com.danibuiza.for360t.numberencoding.NumberEncodingMain
+
 ==============
 Tests
 ==============
