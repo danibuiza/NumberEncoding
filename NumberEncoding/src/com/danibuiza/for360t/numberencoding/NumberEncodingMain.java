@@ -114,8 +114,16 @@ public class NumberEncodingMain
         // words can be stored in memory
         InputStream isDict = new FileInputStream( new File( DEFAULT_DICTIONARY_FILE_NAME ) );
         BufferedReader brDict = new BufferedReader( new InputStreamReader( isDict ) );
-        brDict.lines().forEach( word -> words.add( new DictionaryItem( word, true ) ) );
+        brDict.lines().forEach( word -> addWord( word ) );
         brDict.close();
+    }
+
+    private static void addWord( String word )
+    {
+        if( words.size() < 75000 )
+        {
+            words.add( new DictionaryItem( word, true ) );
+        }
     }
 
     /**
