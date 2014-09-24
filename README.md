@@ -57,10 +57,13 @@ Build and compile: mvn package (in the directory where the pom.xml is located)
 
 Execute: java -cp target/numberEncoding-1.0.jar com.danibuiza.for360t.numberencoding.NumberEncodingMain
 
+Parameters: 
+you can pass 0, 1 (the possibility to print out the elapsed time) or 3 parameters (elapsed time and path of input files)
+
 ==============
 Tests
 ==============
 
--Unit tests are located under the tests directory, to execute them using Junit you need to:
+- Unit tests are located under the tests directory, to execute them using Junit you need to:
 
 - Regression tests are located under regressionTests, to execute them you need to:
