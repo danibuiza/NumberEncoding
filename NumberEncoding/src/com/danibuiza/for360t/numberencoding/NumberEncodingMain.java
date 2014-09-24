@@ -25,16 +25,16 @@ public class NumberEncodingMain
 {
 
     // This file can be infinite and cannot be stored in memory
-    private static String                     DEFAULT_PHONES_FILE_NAME     = "docs/input.txt";
+    private static String                     phones_file_name = "docs/input.txt";
 
     // This file has a maximum of 7500 words and can be stored in memory.
-    private static String                     DEFAULT_DICTIONARY_FILE_NAME = "docs/dictionary.txt";
+    private static String                     dict_file_name   = "docs/dictionary.txt";
 
     // List of words to be stored in memory
-    private static final List<DictionaryItem> words                        = new ArrayList<DictionaryItem>();
+    private static final List<DictionaryItem> words            = new ArrayList<DictionaryItem>();
 
     // Number of maximum threads to use in the pool
-    private static final int                  NUMBER_THREADS               = 10;
+    private static final int                  NUMBER_THREADS   = 10;
 
     /**
      * main program
@@ -47,19 +47,27 @@ public class NumberEncodingMain
     {
 
         long start = System.currentTimeMillis();
-        boolean printDuration = true;
+
+        boolean printDuration = false;
+        // one parameter to print out the elapsed time
+        if( params != null && params.length == 1 )
+        {
+            printDuration = Boolean.valueOf( params[0] );
+
+        }
+        // 3 params to specify input files and printing out of elapsed time
         if( params != null && params.length == 3 )
         {
-            DEFAULT_PHONES_FILE_NAME = params[0];
-            DEFAULT_DICTIONARY_FILE_NAME = params[1];
-            printDuration = Boolean.valueOf( params[2] );
+            printDuration = Boolean.valueOf( params[0] );
+            phones_file_name = params[1];
+            dict_file_name = params[2];
         }
 
         // stores in memory the list of words with related decodings
         createDictionary();
 
         // Phones are handle directly from the file and not stored in memory
-        InputStream isPhones = new FileInputStream( new File( DEFAULT_PHONES_FILE_NAME ) );
+        InputStream isPhones = new FileInputStream( new File( phones_file_name ) );
         Scanner scannerPhones = new Scanner( isPhones, "UTF-8" );
 
         // init the thread pool manager
@@ -112,7 +120,7 @@ public class NumberEncodingMain
     private static void createDictionary() throws FileNotFoundException, IOException
     {
         // words can be stored in memory
-        InputStream isDict = new FileInputStream( new File( DEFAULT_DICTIONARY_FILE_NAME ) );
+        InputStream isDict = new FileInputStream( new File( dict_file_name ) );
         BufferedReader brDict = new BufferedReader( new InputStreamReader( isDict ) );
         brDict.lines().forEach( word -> addWord( word ) );
         brDict.close();

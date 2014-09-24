@@ -44,9 +44,6 @@
       <testResource>
         <directory>tests</directory>
       </testResource>
-      <testResource>
-        <directory>regressionTests</directory>
-      </testResource>
     </testResources>
   </build>
 </project>

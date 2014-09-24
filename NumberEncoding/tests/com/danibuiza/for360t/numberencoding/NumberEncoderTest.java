@@ -84,18 +84,37 @@ public class NumberEncoderTest
 
         assertNotNull( results );
         assertEquals( 1, results.keySet().size() );
-        
+
+        results = new HashMap<String, String>();
+        conflicts = new HashMap<String, String>();
+
         phoneItem = new PhoneItem( "04824" );
         NumberEncoder.match( dictItem, phoneItem, results, conflicts, words );
 
         assertNotNull( results );
-        assertEquals( 1, results.keySet().size() );
-        
+        assertEquals( 0, results.keySet().size() );
+        assertNotNull( conflicts );
+        assertEquals( 1, conflicts.keySet().size() );
+
+        results = new HashMap<String, String>();
+        conflicts = new HashMap<String, String>();
+
         phoneItem = new PhoneItem( "048241" );
         NumberEncoder.match( dictItem, phoneItem, results, conflicts, words );
 
         assertNotNull( results );
-        assertEquals( 1, results.keySet().size() );
+        assertEquals( 0, results.keySet().size() );
+        assertNotNull( conflicts );
+        assertEquals( 1, conflicts.keySet().size() );
+
+        results = new HashMap<String, String>();
+        conflicts = new HashMap<String, String>();
+
+        phoneItem = new PhoneItem( "1" );
+        NumberEncoder.match( dictItem, phoneItem, results, conflicts, words );
+
+        assertNotNull( results );
+        assertEquals( 0, results.keySet().size() );
 
     }
 

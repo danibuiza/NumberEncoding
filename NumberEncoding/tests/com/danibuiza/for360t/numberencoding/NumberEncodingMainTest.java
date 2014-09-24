@@ -50,7 +50,7 @@ public class NumberEncodingMainTest
 
     private void redirectStandardOutputToFile() throws FileNotFoundException
     {
-        File file = new File( "regressionTests/output_test.txt" );
+        File file = new File( "tests/output_test.txt" );
         FileOutputStream fos = new FileOutputStream( file );
         PrintStream ps = new PrintStream( fos );
         System.setOut( ps );
@@ -63,10 +63,10 @@ public class NumberEncodingMainTest
         redirectStandardOutputToFile();
 
         // call main
-        String[] params = { "docs/input_small.txt", "docs/dictionary_small.txt", "false" };
+        String[] params = { "false", "docs/input_small.txt", "docs/dictionary_small.txt" };
         NumberEncodingMain.main( params );
 
-        InputStream isDict = new FileInputStream( new File( "regressionTests/output_test.txt" ) );
+        InputStream isDict = new FileInputStream( new File( "tests/output_test.txt" ) );
         BufferedReader brDict = new BufferedReader( new InputStreamReader( isDict ) );
         List<String> words = new ArrayList<String>();
         brDict.lines().forEach( encoding -> words.add( encoding ) );
